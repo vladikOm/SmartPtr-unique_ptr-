@@ -1,8 +1,7 @@
-
 #include <iostream>
-#include<vector>            //Для  class vector
- #include"Unique_ptr.h"     //Для мого власного Unique_ptr
-#include<memory>            //Для  unique_ptr
+#include<vector>            //Р”Р»СЏ  class vector
+#include"Unique_ptr.h"      //Р”Р»СЏ РјРѕРіРѕ РІР»Р°СЃРЅРѕРіРѕ Unique_ptr
+#include<memory>            //Р”Р»СЏ  unique_ptr
 
 
 
@@ -20,7 +19,7 @@ void  Test5();
 
 
 
-int main()
+int main()             //Р“РѕР»РѕРІРЅР° С„СѓРЅРєС†С–СЏ С‚РѕС‡РєР° РІС…РѕРґСѓ РІ РїСЂРѕРіСЂР°РјСѓ
 {
     cout << "Let's go test" << endl << endl;
 
@@ -88,7 +87,7 @@ void Test3()
 {
     cout << "\n test #3\n"  << endl;
     Unique_ptr<int>ptr1{ new int };   cout << endl;
-    Unique_ptr<int>ptr2{ std::move (ptr1 )};    //Unique_ptr<int>ptr2{ ptr1 }; такий варіант не працює ptr1(lvalue)
+    Unique_ptr<int>ptr2{ std::move (ptr1 )};    //Unique_ptr<int>ptr2{ ptr1 }; С‚Р°РєРёР№ РІР°СЂС–Р°РЅС‚ РЅРµ РїСЂР°С†СЋС” ptr1(lvalue)
     cout << "End test " << endl;
 }
   
@@ -108,6 +107,3 @@ void Test5()
     Unique_ptr<int, MyDel<int>>  ptr1(   new  int (20), Dl  );
     cout << "End test " << endl;
 }
-  
-
-
