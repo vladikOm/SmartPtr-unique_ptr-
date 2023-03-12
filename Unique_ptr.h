@@ -1,7 +1,5 @@
-
- 
 #pragma once
-#define _NODISCARD [[nodiscard]] //Атрибут
+#define _NODISCARD [[nodiscard]] //РђС‚СЂРёР±СѓС‚
 
 #include <iostream>
 #include <memory>
@@ -33,7 +31,7 @@ private:
 
 public:
      
-    constexpr Unique_ptr() noexcept :  m_pointer(nullptr)                      //Коструктор за замовчуванням    
+    constexpr Unique_ptr() noexcept :  m_pointer(nullptr)             //РљРѕСЃС‚СЂСѓРєС‚РѕСЂ Р·Р° Р·Р°РјРѕРІС‡СѓРІР°РЅРЅСЏРј    
     {
         std::cout << "Unique_ptr()\n";
     }
@@ -42,14 +40,14 @@ public:
          std::cout << "Unique_ptr(nullptr_t)\n";
     }
     
-    explicit Unique_ptr(T* ptr) noexcept : m_pointer(ptr)          //Коструктор(ініціалізований явно) який приймає один параметр
+    explicit Unique_ptr(T* ptr) noexcept : m_pointer(ptr)             //РљРѕСЃС‚СЂСѓРєС‚РѕСЂ(С–РЅС–С†С–Р°Р»С–Р·РѕРІР°РЅРёР№ СЏРІРЅРѕ) СЏРєРёР№ РїСЂРёР№РјР°С” РѕРґРёРЅ РїР°СЂР°РјРµС‚СЂ
       
     {
        std:: cout << "explicit Unique_ptr(T* ptr = nullptr)\n";
     }
 
   
-    //// * Коструктора копії  unique_ptr не існує тому що тільки 1 вказівник вказує на об'єкт
+    //// * РљРѕСЃС‚СЂСѓРєС‚РѕСЂР° РєРѕРїС–С—  unique_ptr РЅРµ С–СЃРЅСѓС” С‚РѕРјСѓ С‰Рѕ С‚С–Р»СЊРєРё 1 РІРєР°Р·С–РІРЅРёРє РІРєР°Р·СѓС” РЅР° РѕР±'С”РєС‚
   
     Unique_ptr(const Unique_ptr& obj) = delete;            // DELETED COPY CONSTRUCTOR
 
@@ -64,13 +62,13 @@ public:
         std::cout << "Unique_ptr(T* ptr, const D& del)\n";
     }
 
-   Unique_ptr(T* ptr, D&& del) noexcept :                  //Тут ми передаємовказівник і  вказівник на функцію власну для видалення ()
+   Unique_ptr(T* ptr, D&& del) noexcept :                  //РўСѓС‚ РјРё РїРµСЂРµРґР°С”РјРѕРІРєР°Р·С–РІРЅРёРє С–  РІРєР°Р·С–РІРЅРёРє РЅР° С„СѓРЅРєС†С–СЋ РІР»Р°СЃРЅСѓ РґР»СЏ РІРёРґР°Р»РµРЅРЅСЏ ()
         m_pointer(ptr), m_deleter(std::move(del))
     {
         std::cout << " Unique_ptr(T* ptr, D&& del)\n";
     }
    template<class U>
-    Unique_ptr(Unique_ptr<U>&& other) noexcept :              //Конструктор переміщення передаємо посилання на об'єкт 
+    Unique_ptr(Unique_ptr<U>&& other) noexcept :              //РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРµСЂРµРјС–С‰РµРЅРЅСЏ РїРµСЂРµРґР°С”РјРѕ РїРѕСЃРёР»Р°РЅРЅСЏ РЅР° РѕР±'С”РєС‚ 
         m_pointer(other.release()), m_deleter(std::move(other.m_deleter)) 
     {
         std::cout << "Unique_ptr(Unique_ptr&& other)\n";
